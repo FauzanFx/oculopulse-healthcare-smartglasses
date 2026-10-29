@@ -35,7 +35,7 @@ Repositori ini berisi kode sumber *firmware edge* C/C++ (Seeed Studio XIAO ESP32
 | :--- | :--- | :--- |
 | **Unit Pemroses Utama (MCU)** | Seeed Studio XIAO ESP32-S3 Sense (Dual-Core Xtensa LX7 @ 240 MHz, 512 KB SRAM) | On-board |
 | **Sensor Kamera Okular** | OmniVision OV2640 NoIR (160×120 base $\rightarrow$ 120×120 ROI Grayscale @ 15 FPS) | Konektor B2B DVP Kamera |
-| **Iluminator NIR & Driver** | LED Vishay VSMY1850 (850 nm) + MOSFET P-Channel AO3401 (Pulsa 8,0 ms, *Duty Cycle* 12%) | `D0` (`GPIO 1`) |
+| **Iluminator NIR & Driver** | LED Vishay VSMY1850 (850 nm) + MOSFET N-Channel AO3400A (Pulsa 8,0 ms, *Duty Cycle* 12%) | `D0` (`GPIO 1`) |
 | **Sensor Cahaya Ambien** | Vishay VEML7700-TT (`0x10`) | $\text{I}^2\text{C}$ SDA: `D4` (`GPIO 5`), SCL: `D5` (`GPIO 6`) |
 | **Sensor Gerak 6-Axis IMU** | STMicroelectronics LSM6DS3TR-C (`0x6A`) + Interupsi *Wake-on-Motion* | $\text{I}^2\text{C}$ (`GPIO 5/6`) + `INT1`: `D1` (`GPIO 2`) |
 | **Aktuator Haptik** | Linear Resonant Actuator (LRA 8 mm, 170 Hz / 200 Hz) | `D3` (`GPIO 4`) |

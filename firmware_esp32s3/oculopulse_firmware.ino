@@ -11,7 +11,7 @@
 
 #include "oculopulse_core.h"
 
-#define PIN_IR_MOSFET_PWM   1  // D0 (GPIO 1): AO3401 MOSFET gate for VSMY1850 850nm LED
+#define PIN_IR_MOSFET_PWM   1  // D0 (GPIO 1): AO3400A MOSFET gate for VSMY1850 850nm LED
 #define PIN_IMU_INT1        2  // D1 (GPIO 2): LSM6DS3TR-C (0x6A) wake-on-motion INT1
 #define PIN_BAT_ADC         3  // D2 (GPIO 3): LiPo battery voltage divider ADC
 #define PIN_LRA_HAPTIC_PWM  4  // D3 (GPIO 4): LRA haptic driver PWM (170/200 Hz)

@@ -50,7 +50,7 @@ def run_sil_simulation():
             a_dyn_g = 0.04 + abs(np.random.normal(0, 0.015))
 
         elif t < 180:
-            phase = "CVS_DRY_EYE_TEXT_NECK"
+            phase = "CVS_DRY_EYE_STRAIN"
             lux = 500.0 + np.random.normal(0, 4.0)
             true_delta_d = 0.10 + 0.04 * np.sin(2 * np.pi * 0.04 * t) + np.random.normal(0, 0.025)
             ramp = min(1.0, (t - 120) / 10.0)
@@ -101,7 +101,7 @@ def run_sil_simulation():
         if perclos >= 15.0 or (blink_dur_ms > 350.0 and cpui >= 6.5) or (delta_d_otonom < -0.35 and cpui >= 6.5):
             pred_state = "FATIGUE_MICROSLEEP"
         elif blink_rate < 7.0 or pitch_deg > 20.0:
-            pred_state = "CVS_DRY_EYE_TEXT_NECK"
+            pred_state = "CVS_DRY_EYE_STRAIN"
         elif delta_d_otonom > 0.40:
             pred_state = "COGNITIVE_OVERLOAD"
         else:
@@ -123,7 +123,7 @@ def run_sil_simulation():
             "motion_gate_freeze": int(motion_gate),
             "head_nod_detected": int(gyro_y_dps > 35.0 and ear_mean < 0.165),
             "classified_state": pred_state,
-            "haptic_lra_pwm_hz": 200 if pred_state == "FATIGUE_MICROSLEEP" else (170 if pred_state == "CVS_DRY_EYE_TEXT_NECK" else 0),
+            "haptic_lra_pwm_hz": 200 if pred_state == "FATIGUE_MICROSLEEP" else (170 if pred_state == "CVS_DRY_EYE_STRAIN" else 0),
         })
 
     out_json = os.path.join(SIM_DIR, "python_ref_telemetry_4scenarios.json")

@@ -13,9 +13,9 @@
 
 #define OCULO_ROI_WIDTH            120
 #define OCULO_ROI_HEIGHT           120
-#define OCULO_K_KAL_MM_PER_PX      0.1378125f // 4.41 mm / 32.0 px @ 26 mm working distance
+#define OCULO_K_KAL_MM_PER_PX      0.1378125f // 4.41 mm / 32.0 px @ 25.0 mm working distance
 #define OCULO_EAR_BASELINE_DEF     0.300f
-#define OCULO_ALPHA_COMP_FILTER    0.98f
+#define OCULO_ALPHA_COMP_FILTER    0.96f
 #define OCULO_MOTION_GATE_THRESH_G 0.20f
 
 typedef struct {
@@ -167,7 +167,7 @@ static inline void stepOculoPulseCore1(
         state_str = "COGNITIVE_OVERLOAD";
         lra_hz    = 0;
     } else if (blink_rate_per_min < 7.0f || st->pitch_deg > 20.0f) {
-        state_str = "CVS_DRY_EYE_TEXT_NECK";
+        state_str = "CVS_DRY_EYE_STRAIN";
         lra_hz    = 170;
     }
 

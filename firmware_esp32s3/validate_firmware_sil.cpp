@@ -218,7 +218,7 @@ int main() {
             perclos = 2.7f + 0.2f * sinf(0.2f * t);
             target_pitch = 9.2f + n_pitch(rng);
         } else if (phase_idx == 2) {
-            gt_label = "CVS_DRY_EYE_TEXT_NECK";
+            gt_label = "CVS_DRY_EYE_STRAIN";
             lux = 500.0f + n_lux(rng);
             float ramp = std::min(1.0f, (float)(t - 120) / 4.0f);
             aut_shift_mm = 0.08f + n_pupil(rng);
@@ -323,7 +323,7 @@ int main() {
     std::cout << "  - Phase 1 Light Compensation RMSE (300->650 Lux): " << std::setprecision(4) << phase1_rmse << " mm (< 0.05 mm)\n";
     std::cout << "  - Phase 1 Accuracy (NORMAL_ALERT)               : " << phase_correct[0] << "/60 (" << std::setprecision(1) << (phase_correct[0]/0.6) << "%)\n";
     std::cout << "  - Phase 2 Accuracy (COGNITIVE_OVERLOAD)         : " << phase_correct[1] << "/60 (" << (phase_correct[1]/0.6) << "%)\n";
-    std::cout << "  - Phase 3 Accuracy (CVS_DRY_EYE_TEXT_NECK)      : " << phase_correct[2] << "/60 (" << (phase_correct[2]/0.6) << "%)\n";
+    std::cout << "  - Phase 3 Accuracy (CVS_DRY_EYE_STRAIN)         : " << phase_correct[2] << "/60 (" << (phase_correct[2]/0.6) << "%)\n";
     std::cout << "  - Phase 4 Accuracy (FATIGUE_MICROSLEEP)         : " << phase_correct[3] << "/60 (" << (phase_correct[3]/0.6) << "%)\n";
     std::cout << "  - Total SIL Classification Accuracy             : " << total_correct << "/240 (" << (total_correct/2.4) << "%)\n";
     std::cout << "============================================================================\n";
