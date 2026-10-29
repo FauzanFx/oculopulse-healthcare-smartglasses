@@ -23,11 +23,10 @@ def generate_bab4_power_data_and_plot():
         "MCU ESP32-S3\n+ BLE Burst 1Hz",
         "Kamera OV2640\n(ROI 15 FPS)",
         "LED NIR 850nm\n(Strobe 12%)",
-        "Haptik LRA\n(Siaga/Periodik)",
         "IMU 6-Axis\nLSM6DS3TR-C",
         "Sensor Cahaya\nVEML7700"
     ]
-    currents_ma = np.array([38.00, 12.50, 2.40, 0.45, 0.25, 0.045])
+    currents_ma = np.array([38.00, 12.50, 2.40, 0.25, 0.045])
     total_3v3_ma = float(np.sum(currents_ma))
 
     # TI TPS62740 buck efficiency (92% @ 3.3V from 3.7V LiPo)
@@ -95,12 +94,12 @@ def generate_bab4_power_data_and_plot():
     ax2.plot(
         t_hours, v_daily,
         color="#111111", linestyle="-", linewidth=1.5,
-        label="Mode Kerja Harian + Auto-Sleep (44,2 mA -> 7,91 Jam)"
+        label="Mode Kerja Harian + Auto-Sleep (43,85 mA -> 7,98 Jam)"
     )
     ax2.plot(
         t_hours, v_active,
         color="#444444", linestyle="--", linewidth=1.4,
-        label="Mode Aktif Kontinu OculoPulse (52,0 mA -> 6,73 Jam)"
+        label="Mode Aktif Kontinu OculoPulse (51,57 mA -> 6,79 Jam)"
     )
     ax2.plot(
         t_hours, v_wifi,

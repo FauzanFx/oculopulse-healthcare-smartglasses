@@ -412,13 +412,13 @@
 
     <div class="haptic-card">
       <div class="haptic-left">
-        <div class="haptic-icon">⚡</div>
+        <div class="haptic-icon">🔔</div>
         <div class="haptic-text">
-          <h5 id="lra-title">Aktuator Haptik LRA Siaga</h5>
-          <p id="lra-desc">170 Hz (Postur/CVS) • 200 Hz (Kantuk)</p>
+          <h5 id="lra-title">Status Peringatan Aplikasi</h5>
+          <p id="lra-desc">Siaga • Peringatan Ergonomi • Alarm Bahaya</p>
         </div>
       </div>
-      <div class="haptic-badge" id="lra-hz">0 Hz</div>
+      <div class="haptic-badge" id="lra-hz">SIAGA</div>
     </div>
 
     <div class="mqtt-pill">
@@ -479,7 +479,7 @@
         header: "KOMPENSASI CAHAYA & OTONOM",
         body: "Iluminansi ruang 650 Lux (acuan D_base 3,98 mm). Simpangan otonom ΔD +0,01 mm berada di zona normal — kondisi fokus & bebas kelelahan.",
         title: "Status: Normal Alert", sub: "Fase 1 / 4 • Kompensasi Aktif",
-        lraTitle: "Aktuator Haptik LRA Siaga", lraDesc: "170 Hz (Postur/CVS) • 200 Hz (Kantuk)", lraHz: "0 Hz",
+        lraTitle: "Status Aplikasi: Siaga", lraDesc: "Pemantauan latar belakang kontinu", lraHz: "SIAGA",
         pupil: "3,99 mm", deltad: "ΔD +0,01", cpui: "1,68 mm/m", lux: "650 Lux", gate: "Gate: Aman"
       },
       {
@@ -487,15 +487,15 @@
         header: "PERINGATAN BEBAN KOGNITIF",
         body: "Dilatasi pupil simpatis terdeteksi (ΔD +0,55 mm > +0,40 mm) disertai penurunan kedip. Pencatatan hening (Silent Logging) aktif.",
         title: "Status: Cognitive Overload", sub: "Fase 2 / 4 • Dilatasi Simpatis",
-        lraTitle: "Mode Hening (Silent Log)", lraDesc: "Mencegah distraksi saat fokus tinggi", lraHz: "0 Hz",
+        lraTitle: "Mode Hening (Silent Log)", lraDesc: "Mencegah distraksi saat fokus tinggi", lraHz: "HENING",
         pupil: "4,53 mm", deltad: "ΔD +0,55", cpui: "2,40 mm/m", lux: "650 Lux", gate: "Gate: Aman"
       },
       {
         blink: "4,2", perclos: "1,8%", pitch: "+24,5°",
         header: "PERINGATAN MATA KERING & LEHER",
-        body: "Laju kedipan turun ke 4,2 /mnt (< 7 /mnt) dan sudut tunduk leher mencapai +24,5° (> 20°). Getaran haptik halus diaktifkan.",
+        body: "Laju kedipan turun ke 4,2 /mnt (< 7 /mnt) dan sudut tunduk leher mencapai +24,5° (> 20°). Notifikasi peringatan diaktifkan.",
         title: "Status: CVS & Text-Neck", sub: "Fase 3 / 4 • Koreksi Ergonomi",
-        lraTitle: "Intervensi Haptik Halus", lraDesc: "Pengingat kedip & tegakkan leher", lraHz: "170 Hz",
+        lraTitle: "Notifikasi Peringatan Layar", lraDesc: "Pengingat kedip mata & tegakkan leher", lraHz: "WASPADA",
         pupil: "4,21 mm", deltad: "ΔD +0,08", cpui: "2,25 mm/m", lux: "500 Lux", gate: "Gate: Aman"
       },
       {
@@ -503,7 +503,7 @@
         header: "BAHAYA KANTUK & MICROSLEEP",
         body: "PERCLOS menembus 22,8% (≥ 15%) disertai osilasi gelombang Hippus (cPUI 8,42 mm/mnt) dan anggukan kepala. Alarm darurat aktif!",
         title: "Status: Fatigue Microsleep", sub: "Fase 4 / 4 • Intervensi Darurat",
-        lraTitle: "Alarm Haptik Darurat Aktif!", lraDesc: "Peringatan keras tulang pelipis", lraHz: "200 Hz",
+        lraTitle: "Alarm Audio & Visual Darurat!", lraDesc: "Peringatan bahaya kantuk / microsleep", lraHz: "BAHAYA",
         pupil: "3,68 mm", deltad: "ΔD -0,46", cpui: "8,42 mm/m", lux: "480 Lux", gate: "Nod: Ya!"
       }
     ];

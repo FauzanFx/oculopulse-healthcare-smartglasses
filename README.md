@@ -38,7 +38,6 @@ Repositori ini berisi kode sumber *firmware edge* C/C++ (Seeed Studio XIAO ESP32
 | **Iluminator NIR & Driver** | LED Vishay VSMY1850 (850 nm) + MOSFET N-Channel AO3400A (Pulsa 8,0 ms, *Duty Cycle* 12%) | `D0` (`GPIO 1`) |
 | **Sensor Cahaya Ambien** | Vishay VEML7700-TT (`0x10`) | $\text{I}^2\text{C}$ SDA: `D4` (`GPIO 5`), SCL: `D5` (`GPIO 6`) |
 | **Sensor Gerak 6-Axis IMU** | STMicroelectronics LSM6DS3TR-C (`0x6A`) + Interupsi *Wake-on-Motion* | $\text{I}^2\text{C}$ (`GPIO 5/6`) + `INT1`: `D1` (`GPIO 2`) |
-| **Aktuator Haptik** | Linear Resonant Actuator (LRA 8 mm, 170 Hz / 200 Hz) | `D3` (`GPIO 4`) |
 | **Manajemen Daya & Baterai** | Curved LiPo 3,7 V 350 mAh (`LP501255`) + TI BQ25101 + TI TPS62740 (3,3 V) | ADC Monitor: `D2` (`GPIO 3`) |
 
 ---
