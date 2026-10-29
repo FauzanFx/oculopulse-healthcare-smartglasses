@@ -1,0 +1,20 @@
+# Compiled binaries & build artifacts
+firmware_esp32s3/validate_firmware_sil
+*.o
+*.out
+*.exe
+*.elf
+*.bin
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local drafts, scratch scripts & temporary assets
+report/
+poc_live/
+ui-ex-2.png
+ui-example.webp
+.DS_Store

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OculoPulse Pro — Smartglasses Companion App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+      color: #0f172a;
+    }
+
+    .phone-frame {
+      width: 400px;
+      background-color: #ffffff;
+      border-radius: 36px;
+      border: 8px solid #1e293b;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+      padding: 24px 20px 26px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .status-greeting {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      color: #16a34a;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background-color: #16a34a;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .app-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+
+    .app-title span {
+      color: #2563eb;
+    }
+
+    .avatar-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 800;
+      font-size: 15px;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+    }
+
+    .today-card {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .stat-box {
+      background-color: #ffffff;
+      border: 1px solid #f1f5f9;
+      border-radius: 16px;
+      padding: 12px 8px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+    }
+
+    .stat-value {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 3px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .insight-box {
+      background-color: #eef2ff;
+      border-radius: 16px;
+      padding: 13px 14px;
+      margin-bottom: 12px;
+    }
+
+    .insight-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #3b82f6;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .insight-text {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: #334155;
+    }
+
+    .action-banner {
+      background: linear-gradient(90deg, #1d4ed8 0%, #0d9488 100%);
+      border-radius: 18px;
+      padding: 15px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+    }
+
+    .action-info h4 {
+      font-size: 14.5px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .action-info p {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .action-btn {
+      background-color: rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .haptic-card {
+      background-color: #fff7ed;
+      border: 1px solid #ffedd5;
+      border-radius: 20px;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .haptic-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .haptic-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background-color: #ffedd5;
+      color: #ea580c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .haptic-text h5 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ea580c;
+      margin-bottom: 2px;
+    }
+
+    .haptic-text p {
+      font-size: 11.5px;
+      color: #64748b;
+    }
+
+    .haptic-badge {
+      text-align: right;
+      font-size: 12px;
+      font-weight: 700;
+      color: #16a34a;
+    }
+
+    .mqtt-pill {
+      background-color: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 9px 12px;
+      text-align: center;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #15803d;
+      margin-bottom: 18px;
+    }
+
+    .sub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .sub-header h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .sub-header a {
+      font-size: 12px;
+      font-weight: 600;
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .sensor-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .sensor-card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 12px 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sensor-accent {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .accent-blue { background-color: #e0e7ff; }
+    .accent-teal { background-color: #ccfbf1; }
+    .accent-amber { background-color: #fef3c7; }
+
+    .sensor-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .sensor-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .sensor-tag {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #475569;
+    }
+
+    .sensor-name {
+      position: relative;
+      z-index: 1;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .sensor-meta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10.5px;
+      color: #64748b;
+    }
+
+    .mini-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .dot-blue { background-color: #2563eb; }
+    .dot-green { background-color: #10b981; }
+    .dot-amber { background-color: #f59e0b; }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="header-row">
+      <div>
+        <div class="status-greeting">
+          <span class="status-dot"></span>
+          <span id="ble-status">BLE 5.0 TERHUBUNG (15 HZ)</span>
+        </div>
+        <div class="app-title">OculoPulse <span>Pro</span></div>
+      </div>
+      <div class="avatar-badge">OP</div>
+    </div>
+
+    <div class="today-card">
+      <div class="section-tag">TELEMETRI HARI INI</div>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-value" id="val-blink">16,1</div>
+          <div class="stat-label">Kedip / mnt</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="val-perclos">3,2%</div>
+          <div class="stat-label">PERCLOS</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="val-pitch">+6,5°</div>
+          <div class="stat-label">Pitch Leher</div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-title" id="insight-header">KOMPENSASI CAHAYA & OTONOM</div>
+        <div class="insight-text" id="insight-body">
+          Iluminansi ruang 650 Lux (acuan D_base 3,98 mm). Simpangan otonom ΔD +0,01 mm berada di zona normal — kondisi fokus & bebas kelelahan.
+        </div>
+      </div>
+
+      <div class="action-banner">
+        <div class="action-info">
+          <h4 id="phase-title">Status: Normal Alert</h4>
+          <p id="phase-sub">Fase 1 / 4 • Kompensasi Aktif</p>
+        </div>
+        <button class="action-btn" onclick="cycleScenario()">Skenario</button>
+      </div>
+    </div>
+
+    <div class="haptic-card">
+      <div class="haptic-left">
+        <div class="haptic-icon">⚡</div>
+        <div class="haptic-text">
+          <h5 id="lra-title">Aktuator Haptik LRA Siaga</h5>
+          <p id="lra-desc">170 Hz (Postur/CVS) • 200 Hz (Kantuk)</p>
+        </div>
+      </div>
+      <div class="haptic-badge" id="lra-hz">0 Hz</div>
+    </div>
+
+    <div class="mqtt-pill">
+      ✓ MQTT Bridge Aktif: oculopulse/telemetry
+    </div>
+
+    <div class="sub-header">
+      <h3>Sensor & Metrik Fisiologis</h3>
+      <a href="#">Log CSV →</a>
+    </div>
+
+    <div class="sensor-cards">
+      <div class="sensor-card">
+        <div class="sensor-accent accent-blue"></div>
+        <div class="sensor-top">
+          <div class="sensor-icon">◉</div>
+          <span class="sensor-tag">PUPIL</span>
+        </div>
+        <div class="sensor-name" id="card-pupil">3,99 mm</div>
+        <div class="sensor-meta">
+          <span id="card-deltad">ΔD +0,01</span>
+          <span class="mini-dot dot-blue">✓</span>
+        </div>
+      </div>
+
+      <div class="sensor-card">
+        <div class="sensor-accent accent-teal"></div>
+        <div class="sensor-top">
+          <div class="sensor-icon">≈</div>
+          <span class="sensor-tag">HIPPUS</span>
+        </div>
+        <div class="sensor-name" id="card-cpui">1,68 mm/m</div>
+        <div class="sensor-meta">
+          <span>cPUI &lt; 6,5</span>
+          <span class="mini-dot dot-green">✓</span>
+        </div>
+      </div>
+
+      <div class="sensor-card">
+        <div class="sensor-accent accent-amber"></div>
+        <div class="sensor-top">
+          <div class="sensor-icon">⌖</div>
+          <span class="sensor-tag">LUX & IMU</span>
+        </div>
+        <div class="sensor-name" id="card-lux">650 Lux</div>
+        <div class="sensor-meta">
+          <span id="card-gate">Gate: Aman</span>
+          <span class="mini-dot dot-amber">✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const scenarios = [
+      {
+        blink: "16,1", perclos: "3,2%", pitch: "+6,5°",
+        header: "KOMPENSASI CAHAYA & OTONOM",
+        body: "Iluminansi ruang 650 Lux (acuan D_base 3,98 mm). Simpangan otonom ΔD +0,01 mm berada di zona normal — kondisi fokus & bebas kelelahan.",
+        title: "Status: Normal Alert", sub: "Fase 1 / 4 • Kompensasi Aktif",
+        lraTitle: "Aktuator Haptik LRA Siaga", lraDesc: "170 Hz (Postur/CVS) • 200 Hz (Kantuk)", lraHz: "0 Hz",
+        pupil: "3,99 mm", deltad: "ΔD +0,01", cpui: "1,68 mm/m", lux: "650 Lux", gate: "Gate: Aman"
+      },
+      {
+        blink: "10,5", perclos: "2,7%", pitch: "+9,2°",
+        header: "PERINGATAN BEBAN KOGNITIF",
+        body: "Dilatasi pupil simpatis terdeteksi (ΔD +0,55 mm > +0,40 mm) disertai penurunan kedip. Pencatatan hening (Silent Logging) aktif.",
+        title: "Status: Cognitive Overload", sub: "Fase 2 / 4 • Dilatasi Simpatis",
+        lraTitle: "Mode Hening (Silent Log)", lraDesc: "Mencegah distraksi saat fokus tinggi", lraHz: "0 Hz",
+        pupil: "4,53 mm", deltad: "ΔD +0,55", cpui: "2,40 mm/m", lux: "650 Lux", gate: "Gate: Aman"
+      },
+      {
+        blink: "4,2", perclos: "1,8%", pitch: "+24,5°",
+        header: "PERINGATAN MATA KERING & LEHER",
+        body: "Laju kedipan turun ke 4,2 /mnt (< 7 /mnt) dan sudut tunduk leher mencapai +24,5° (> 20°). Getaran haptik halus diaktifkan.",
+        title: "Status: CVS & Text-Neck", sub: "Fase 3 / 4 • Koreksi Ergonomi",
+        lraTitle: "Intervensi Haptik Halus", lraDesc: "Pengingat kedip & tegakkan leher", lraHz: "170 Hz",
+        pupil: "4,21 mm", deltad: "ΔD +0,08", cpui: "2,25 mm/m", lux: "500 Lux", gate: "Gate: Aman"
+      },
+      {
+        blink: "7,5", perclos: "22,8%", pitch: "+23,5°",
+        header: "BAHAYA KANTUK & MICROSLEEP",
+        body: "PERCLOS menembus 22,8% (≥ 15%) disertai osilasi gelombang Hippus (cPUI 8,42 mm/mnt) dan anggukan kepala. Alarm darurat aktif!",
+        title: "Status: Fatigue Microsleep", sub: "Fase 4 / 4 • Intervensi Darurat",
+        lraTitle: "Alarm Haptik Darurat Aktif!", lraDesc: "Peringatan keras tulang pelipis", lraHz: "200 Hz",
+        pupil: "3,68 mm", deltad: "ΔD -0,46", cpui: "8,42 mm/m", lux: "480 Lux", gate: "Nod: Ya!"
+      }
+    ];
+
+    let idx = 0;
+    function cycleScenario() {
+      idx = (idx + 1) % scenarios.length;
+      const s = scenarios[idx];
+      document.getElementById("val-blink").textContent = s.blink;
+      document.getElementById("val-perclos").textContent = s.perclos;
+      document.getElementById("val-pitch").textContent = s.pitch;
+      document.getElementById("insight-header").textContent = s.header;
+      document.getElementById("insight-body").textContent = s.body;
+      document.getElementById("phase-title").textContent = s.title;
+      document.getElementById("phase-sub").textContent = s.sub;
+      document.getElementById("lra-title").textContent = s.lraTitle;
+      document.getElementById("lra-desc").textContent = s.lraDesc;
+      document.getElementById("lra-hz").textContent = s.lraHz;
+      document.getElementById("card-pupil").textContent = s.pupil;
+      document.getElementById("card-deltad").textContent = s.deltad;
+      document.getElementById("card-cpui").textContent = s.cpui;
+      document.getElementById("card-lux").textContent = s.lux;
+      document.getElementById("card-gate").textContent = s.gate;
+    }
+  </script>
+</body>
+</html>
